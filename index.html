@@ -1,407 +1,969 @@
-<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Feedback Survey with Likert Scale</title>
+
+    <!-- Inserting Google Fonts so it will affecting the css below -->
+    <!--playfair display-->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!--montserrat-->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Playfair+Display:wght@600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!--css for the index home page-->
     <style>
-      * {
-        padding: 0;
+      /* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+      html,
+      body,
+      div,
+      span,
+      applet,
+      object,
+      iframe,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      p,
+      blockquote,
+      pre,
+      a,
+      abbr,
+      acronym,
+      address,
+      big,
+      cite,
+      code,
+      del,
+      dfn,
+      em,
+      img,
+      ins,
+      kbd,
+      q,
+      s,
+      samp,
+      small,
+      strike,
+      strong,
+      sub,
+      sup,
+      tt,
+      var,
+      b,
+      u,
+      i,
+      center,
+      dl,
+      dt,
+      dd,
+      ol,
+      ul,
+      li,
+      fieldset,
+      form,
+      label,
+      legend,
+      table,
+      caption,
+      tbody,
+      tfoot,
+      thead,
+      tr,
+      th,
+      td,
+      article,
+      aside,
+      canvas,
+      details,
+      embed,
+      figure,
+      figcaption,
+      footer,
+      header,
+      hgroup,
+      menu,
+      nav,
+      output,
+      ruby,
+      section,
+      summary,
+      time,
+      mark,
+      audio,
+      video {
         margin: 0;
-        font-family: Arial, Helvetica, sans-serif;
+        padding: 0;
+        border: 0;
+        font-size: 100%;
+        font: inherit;
+        vertical-align: baseline;
+      }
+      /* HTML5 display-role reset for older browsers */
+      article,
+      aside,
+      details,
+      figcaption,
+      figure,
+      footer,
+      header,
+      hgroup,
+      menu,
+      nav,
+      section {
+        display: block;
+      }
+
+      * {
+        box-sizing: border-box;
       }
 
       body {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        background-color: rgba(211, 211, 211, 0.415);
-        margin: 0;
+        line-height: 1;
+        min-height: 100%;
+        font-family: montserrat, sans-serif;
+        background-color: whitesmoke;
+        /*background-color: #F7EBE8;*/
+        overflow-x: hidden;
       }
 
-      main {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        max-width: 1200px; /* Optional: set a max width for the main content */
-        padding: 20px;
+      html {
+        scroll-behavior: smooth;
       }
 
-      header {
-        align-self: center;
-        margin-bottom: 20px;
-        text-align: center;
+      ol,
+      ul {
+        list-style: none;
+      }
+      blockquote,
+      q {
+        quotes: none;
+      }
+      blockquote:before,
+      blockquote:after,
+      q:before,
+      q:after {
+        content: "";
+        content: none;
+      }
+      table {
+        border-collapse: collapse;
+        border-spacing: 0;
+      }
+
+      /* styling start here */
+
+      /*  * means it will apply for all the elements in the HTML file */
+      * {
+        box-sizing: border-box;
+      }
+
+      .navbackground {
+        background-color: black;
+        padding-top: 45px;
+        padding-bottom: 45px;
       }
 
       h1 {
-        font-size: 2.5rem;
-        color: #333;
+        color: #fff1e6;
+        font-size: 24px;
+        text-align: center;
+        text-transform: uppercase;
         font-weight: bold;
+        letter-spacing: 3px;
       }
 
-      .course-feedback {
-        margin: 3em 0;
+      p {
+        font-size: 15px;
+        letter-spacing: 1px;
+      }
+
+      footer {
+        background-color: black;
+        color: #fae6db;
+        font-size: 14px;
+        letter-spacing: 1px;
+        text-align: center;
+        padding-top: 40px;
+        padding-bottom: 40px;
+      }
+      /*set wrapper as a container and make even space to left and right*/
+      .wrapper {
+        box-sizing: border-box;
+        width: 100%;
+        padding-left: 40px;
+        padding-right: 40px;
+      }
+
+      .wrapper img {
+        width: 100%;
+        height: auto;
+      }
+
+      /*hr{
+    margin-bottom: 0px;
+}*/
+
+      /* starting the navigation bar*/
+
+      /*  Use combination of 2 typeface
+    h use font-family: 'Playfair Display', serif;
+    body, navigation and the rest use font-family: 'Montserrat', sans-serif;*/
+
+      #navDropDown a {
+        font-family: "Montserrat", sans-serif;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+
+      .logo {
         display: flex;
-        flex-direction: column;
         justify-content: center;
-        gap: 20px;
-        background-color: #ffffff;
-        border-radius: 15px;
-        padding: 30px;
-        box-shadow: 2px 2px 30px rgba(0, 0, 0, 0.253);
       }
 
-      .table-responsive {
-        width: 100%;
-        overflow-x: auto; /* Adds horizontal scrolling if the table is too wide */
-      }
-
-      table {
-        width: 100%;
+      .logo img {
+        width: 600px;
+        min-width: 400px;
+        height: 200px;
+        margin-top: -75px;
         max-width: 100%;
-        border-spacing: 0;
-        border-collapse: separate;
-        border-radius: 20px;
-        border: 1px solid #ddd;
-        overflow: hidden;
+        display: block;
+        text-align: center;
+        padding: 0px;
+        margin-left: auto;
+        margin-right: auto;
       }
 
-      table caption {
-        margin-bottom: 20px;
-        font-size: 1.5rem;
-        font-weight: 600;
-        color: #444;
+      .display {
+        display: none;
       }
 
-      thead th {
-        background-color: #f4f4f4;
-        color: #444;
-        padding: 15px;
-        text-align: left;
-        font-size: 1.1rem;
+      /*specific style for the dropdown menu*/
+      #navDropDown {
+        margin-top: 45px;
+        position: absolute;
+        min-width: 100%;
+        width: 375px;
       }
 
-      thead th:last-child {
-        border-top-right-radius: 20px;
+      #navDropDown li {
+        display: block;
       }
 
-      thead th:first-child {
-        border-top-left-radius: 20px;
-      }
-
-      td,
-      th {
-        padding: 20px;
-        border-bottom: 1px solid #ddd;
-        border-right: 1px solid #ddd;
+      #navDropDown .navlink li {
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        background-color: rgba(248, 243, 238, 0.9);
         text-align: center;
       }
 
-      tbody tr:last-child th,
-      tbody tr:last-child td {
-        border-bottom: none;
+      #navDropDown .navlink li {
+        padding-top: 20px;
+        padding-bottom: 20px;
       }
 
-      tbody tr:last-child th:first-child {
-        border-bottom-left-radius: 20px;
+      .display {
+        display: none;
       }
 
-      tbody tr:last-child td:last-child {
-        border-bottom-right-radius: 20px;
+      .pushDown {
+        margin-top: 230px;
       }
 
-      .radio-option {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
+      /*make the hamburger menu in the middle of the logo*/
+      .nav {
+        height: 120px;
+        padding-top: 30px;
+      }
+
+      .menu svg {
+        position: absolute;
+        top: 15%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        margin: 0px;
+      }
+
+      a,
+      a:link {
+        text-decoration: none;
+        color: #949598;
+      }
+
+      a:hover,
+      a:focus {
+        display: block;
+        text-decoration: none;
+        color: #1e555c;
+      }
+
+      a.current {
+        display: block;
+        text-decoration: none;
+        color: #f15152;
+      }
+
+      /* main content styling */
+
+      .section-heading {
+        font-family: "Playfair Display", serif;
+        font-size: 40px;
+        font-weight: 400;
+        text-align: center;
+        padding: 25px;
+        width: 100%;
+      }
+
+      #openingtext p,
+      .contacttext {
+        width: 85%;
+        margin: auto;
+        text-align: center;
         justify-content: center;
       }
 
-      label {
-        cursor: pointer;
-        color: #333;
-        font-size: 1rem;
-      }
-
-      label:hover {
-        color: #1e90ff;
-      }
-
-      button {
-        background-color: #049d49;
-        border: none;
-        border-radius: 5px;
-        color: white;
-        height: 50px;
-        width: 15em;
-        margin: 25px auto;
-        font-size: 1.1rem;
-        display: block;
-        transition: background-color 0.3s ease;
-      }
-
-      button:hover {
-        cursor: pointer;
-        background-color: #1d8e1d;
-      }
-
-      textarea {
-        border: 1px solid #ddd;
-        height: 5em;
-        border-radius: 5px;
-        padding: 10px;
-        font-size: 1rem;
-        resize: none;
-      }
-
-      .comments {
+      #aboutsection {
         display: flex;
-        flex-direction: column;
-        margin-top: 20px;
-        gap: 10px;
+        flex-flow: row wrap;
+        justify-content: center;
       }
 
-      .comments label {
-        font-size: 1.1rem;
-        color: #333;
+      .aboutimage {
+        width: 580px;
+        padding: 10px;
+        transition: all 0.6s ease;
       }
 
-      @media (max-width: 768px) {
-        table {
-          width: 100%;
-          font-size: 0.9rem;
+      .aboutimage img {
+        max-width: 550px;
+        max-height: 400px;
+      }
+
+      .fade {
+        /* source: https://www.webdesignerdepot.com/2014/05/8-simple-css3-transitions-that-will-wow-your-users/ */
+        opacity: 0.5;
+      }
+      .fade:hover {
+        opacity: 1;
+      }
+      .abouttext {
+        width: 560px;
+        justify-content: left;
+        padding: 10px;
+      }
+
+      #menusection,
+      #contactsection {
+        background-color: #fff1e6;
+      }
+
+      .menuscroll {
+        /* display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto; */
+        display: grid;
+        grid-gap: 15px;
+        padding: 15px;
+        grid-template-columns: repeat(auto-fill, minmax(auto, 355px));
+        grid-auto-flow: column;
+        grid-auto-columns: minmax(auto, 355px);
+        overflow-x: auto;
+      }
+
+      /* .menuscroll:hover {
+  animation-play-state: paused;
+} */
+
+      .menuscroll::-webkit-scrollbar {
+        display: none;
+      }
+
+      .menuscroll div {
+        /* flex: 0 0 auto;
+  padding: 10px;  */
+        width: 350px;
+        animation: animate 8s linear infinite;
+      }
+
+      .menuItem {
+        transition: all 0.3s ease;
+      }
+
+      .menuItem img {
+        width: 350px;
+        height: 380px;
+      }
+      .shrink:hover {
+        /* source: https://www.webdesignerdepot.com/2014/05/8-simple-css3-transitions-that-will-wow-your-users/ */
+        -webkit-transform: scale(0.85);
+        -ms-transform: scale(0.85);
+        transform: scale(0.85);
+      }
+
+      @keyframes animate {
+        0% {
+          transform: translate3d(0, 0, 0);
+        }
+        100% {
+          transform: translate3d(-100%, 0, 0);
+        }
+      }
+
+      /* @keyframes animate {
+  0% {
+      transform: translate(0, 0);
+  }
+  100% {
+      transform: translate(-395px, 0);
+  }
+} */
+
+      /* .transition {
+  animation: animate 8s linear infinite;
+} */
+
+      #imagemenusection h3 {
+        font-family: "Playfair Display", serif;
+        color: #848588e3;
+        font-size: 30px;
+        font-weight: 400;
+        margin: 10px auto;
+      }
+      #imagemenusection p {
+        margin-bottom: 30px;
+      }
+      #insightsection {
+        margin-bottom: 20px;
+      }
+
+      .grid-container {
+        margin-top: 15px;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(auto, 270px));
+        grid-gap: 20px;
+        align-items: center;
+        justify-content: center;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .insightimage {
+        position: relative;
+        margin: 0 auto;
+        text-align: center;
+        display: inline-grid;
+      }
+
+      .insightimage img {
+        width: 150px;
+        height: 150px;
+        border: 8px solid black;
+        border-radius: 50%;
+        margin-bottom: 10px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .insightimage img.hoverimg {
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        object-fit: contain;
+        opacity: 0;
+        /* adding animation to insight images */
+        /* source: http://css3.bradshawenterprises.com/cfimg/#cfimg1 */
+        transition: opacity 0.2s ease-in-out;
+        -webkit-transition: opacity 0.2s ease-in-out;
+        -moz-transition: opacity 0.2s ease-in-out;
+        -o-transition: opacity 0.2s ease-in-out;
+      }
+
+      .insightimage:hover img.hoverimg {
+        opacity: 1;
+      }
+
+      .insighttext {
+        text-align: center;
+        font-size: 13px;
+        clear: both;
+        display: inline-block;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+
+      #contactsection {
+        margin-bottom: 0px;
+      }
+      .contactitem {
+        width: 270px;
+        padding: 10px;
+        /* display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  margin: 15px auto; */
+        display: inline-grid;
+        text-align: center;
+      }
+      h5 {
+        font-weight: bold;
+        font-size: 20px;
+      }
+      .contactitem p {
+        margin-top: 13px;
+        font-size: 15px;
+      }
+      /*-----------------------------------------------
+Tablet Style
+--------------------------*/
+      @media only screen and (min-width: 768px) {
+        .navbackground {
+          background-color: black;
+          padding-top: 35px;
+          /* padding-bottom: 35px; */
         }
 
-        td,
-        th {
+        p {
+          font-size: 16px;
+          letter-spacing: 1px;
+        }
+
+        .pushDown {
+          margin-top: 220px;
+        }
+
+        footer {
+          background-color: black;
+          padding-top: 50px;
+          padding-bottom: 50px;
+        }
+      }
+
+      /*-----------------------------------------------
+Desktop Style
+--------------------------*/
+      @media only screen and (min-width: 992px) {
+        header {
+          max-width: 1920px;
+          margin: 0 auto;
+        }
+
+        .navbackground {
+          background-color: lightgray;
+          padding-top: 25px;
+          padding-bottom: 25px;
+        }
+
+        .pushDown {
+          margin-top: 70px;
+        }
+
+        .wrapper {
+          width: 100%;
+          margin-top: 30px;
+          margin-bottom: 30px;
+        }
+
+        .grid-container {
+          grid-template-columns: repeat(4, 1fr);
+        }
+        p {
+          font-size: 18px;
+          letter-spacing: 1px;
+        }
+
+        /*specific style for the dropdown menu*/
+        #navDropDown {
+          /*display: none;*/
+          list-style-type: none;
+          overflow: hidden;
+          margin-top: 25px;
+          padding: 0px;
+          position: absolute;
+          width: 100%;
+        }
+
+        #navDropDown .navlink li {
+          font-size: 15px;
+          text-transform: uppercase;
+          letter-spacing: 0.1em;
+          background-color: rgba(248, 237, 226, 0.9);
+          text-align: center;
+          width: 25%;
+          float: left;
+          line-height: 23px;
+          box-sizing: border-box;
           padding: 10px;
         }
 
-        button {
-          width: 100%;
-        }
-
-        .course-feedback {
-          padding: 15px;
+        footer {
+          /*background-color: #008280;*/
+          background-color: black;
+          padding-top: 70px;
+          padding-bottom: 70px;
         }
       }
     </style>
+
+    <title>TexNAS--CSS Responsive Webpage</title>
   </head>
   <body>
+    <!--Site Header-->
+    <header>
+      <div class="navbackground">
+        <section class="wrapper">
+          <div class="nav">
+            <!-- menu button for mobile and tablet-->
+            <div id="menu" class="menu">
+              <svg
+                id="navbar-button"
+                xmlns="http://www.w3.org/2000/svg"
+                width="25"
+                height="25"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  id="Menu-2"
+                  data-name="Menu"
+                  d="M0,14V12H16v2ZM0,8V6H16V8ZM0,2V0H16V2Z"
+                  transform="translate(0 1)"
+                  fill="#f15152"
+                />
+                <rect
+                  id="Rectangle_1446"
+                  data-name="Rectangle 1446"
+                  width="12"
+                  height="12"
+                  transform="translate(0)"
+                  fill="none"
+                />
+              </svg>
+            </div>
+            <!-- logo for all screens -->
+            <div class="logo">
+              <img src="images/logo.png" alt="logo" />
+            </div>
+
+            <!-- <ul id="navlinkDesktop" class="navlink display">
+              <li>
+                <a href="#aboutsection">About</a>
+              </li>
+
+              <li class="listmenu">
+                <a href="#menusection">Menu</a>
+              </li>
+
+              <li>
+                <a href="#insightsection">Insight</a>
+              </li>
+
+              <li>
+                <a href="#contactsection">Contact</a>
+              </li>
+            </ul> -->
+          </div>
+
+          <!--<hr>-->
+        </section>
+
+        <!-- move out from section, so the drowndown link width can spread from left to right-->
+        <div id="navDropDown" class="display">
+          <ul class="navlink">
+            <li>
+              <a href="#aboutsection">About</a>
+            </li>
+
+            <li>
+              <a href="#menusection">Menu</a>
+            </li>
+
+            <li>
+              <a href="#insightsection">Insight</a>
+            </li>
+
+            <li>
+              <a href="#contactsection">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
     <main>
-      <section class="course-feedback">
-        <header>
-          <h1>Course Feedback</h1>
-        </header>
-        <form name="course-feedback">
-          <div class="table-responsive">
-            <table>
-              <caption>
-                Course Feedback
-              </caption>
-              <thead>
-                <tr>
-                  <th scope="col">Statement</th>
-                  <th>Strongly Disagree</th>
-                  <th>Disagree</th>
-                  <th>Neutral</th>
-                  <th>Agree</th>
-                  <th>Strongly Agree</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">
-                    The course content was clear and easy to understand.
-                  </th>
-                  <td>
-                    <div class="radio-option">
-                      <input
-                        type="radio"
-                        id="row1-strongly-disagree"
-                        name="row-1"
-                      />
-                      <label for="row1-strongly-disagree"
-                        >Strongly Disagree</label
-                      >
-                    </div>
-                  </td>
-                  <td>
-                    <div class="radio-option">
-                      <input type="radio" id="row1-disagree" name="row-1" />
-                      <label for="row1-disagree">Disagree</label>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="radio-option">
-                      <input type="radio" id="row1-neutral" name="row-1" />
-                      <label for="row1-neutral">Neutral</label>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="radio-option">
-                      <input type="radio" id="row1-agree" name="row-1" />
-                      <label for="row1-agree">Agree</label>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="radio-option">
-                      <input
-                        type="radio"
-                        id="row1-strongly-agree"
-                        name="row-1"
-                      />
-                      <label for="row1-strongly-agree">Strongly Agree</label>
-                    </div>
-                  </td>
-                </tr>
+      <!--openingtext-->
+      <section id="openingtext" class="wrapper">
+        <h2 class="section-heading">You Know You Want It.</h2>
 
-                <tr>
-                  <th scope="row">
-                    The instructor was knowledgeable and helpful.
-                  </th>
-                  <td>
-                    <div class="radio-option">
-                      <input
-                        type="radio"
-                        id="row2-strongly-disagree"
-                        name="row-2"
-                      />
-                      <label for="row2-strongly-disagree"
-                        >Strongly Disagree</label
-                      >
-                    </div>
-                  </td>
-                  <td>
-                    <div class="radio-option">
-                      <input type="radio" id="row2-disagree" name="row-2" />
-                      <label for="row2-disagree">Disagree</label>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="radio-option">
-                      <input type="radio" id="row2-neutral" name="row-2" />
-                      <label for="row2-neutral">Neutral</label>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="radio-option">
-                      <input type="radio" id="row2-agree" name="row-2" />
-                      <label for="row2-agree">Agree</label>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="radio-option">
-                      <input
-                        type="radio"
-                        id="row2-strongly-agree"
-                        name="row-2"
-                      />
-                      <label for="row2-strongly-agree">Strongly Agree</label>
-                    </div>
-                  </td>
-                </tr>
+        <p>
+          A great pleasure without feeling guilty! <br />Grab a spoon and taste
+          deliciousness of our ice cream flavours!<br />
+          With 80 to 150 calories per serving you can treat yourself to this
+          premium treat.
+        </p>
+      </section>
 
-                <tr>
-                  <th scope="row">The course materials were helpful.</th>
-                  <td>
-                    <div class="radio-option">
-                      <input
-                        type="radio"
-                        id="row3-strongly-disagree"
-                        name="row-3"
-                      />
-                      <label for="row3-strongly-disagree"
-                        >Strongly Disagree</label
-                      >
-                    </div>
-                  </td>
-                  <td>
-                    <div class="radio-option">
-                      <input type="radio" id="row3-disagree" name="row-3" />
-                      <label for="row3-disagree">Disagree</label>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="radio-option">
-                      <input type="radio" id="row3-neutral" name="row-3" />
-                      <label for="row3-neutral">Neutral</label>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="radio-option">
-                      <input type="radio" id="row3-agree" name="row-3" />
-                      <label for="row3-agree">Agree</label>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="radio-option">
-                      <input
-                        type="radio"
-                        id="row3-strongly-agree"
-                        name="row-3"
-                      />
-                      <label for="row3-strongly-agree">Strongly Agree</label>
-                    </div>
-                  </td>
-                </tr>
+      <!--about-->
+      <section id="aboutsection" class="wrapper">
+        <h2 class="section-heading">About</h2>
+        <div class="aboutimage fade">
+          <img src="images/aboutImage.jpg" alt="menuimg" />
+        </div>
 
-                <tr>
-                  <th scope="row">I would recommend this course to others.</th>
-                  <td>
-                    <div class="radio-option">
-                      <input
-                        type="radio"
-                        id="row4-strongly-disagree"
-                        name="row-4"
-                      />
-                      <label for="row4-strongly-disagree"
-                        >Strongly Disagree</label
-                      >
-                    </div>
-                  </td>
-                  <td>
-                    <div class="radio-option">
-                      <input type="radio" id="row4-disagree" name="row-4" />
-                      <label for="row4-disagree">Disagree</label>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="radio-option">
-                      <input type="radio" id="row4-neutral" name="row-4" />
-                      <label for="row4-neutral">Neutral</label>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="radio-option">
-                      <input type="radio" id="row4-agree" name="row-4" />
-                      <label for="row4-agree">Agree</label>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="radio-option">
-                      <input
-                        type="radio"
-                        id="row4-strongly-agree"
-                        name="row-4"
-                      />
-                      <label for="row4-strongly-agree">Strongly Agree</label>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+        <p class="abouttext">
+          We opened our little artisanal shop that made traditionally crafted
+          ice cream on the south shore of Québec City. In those days, the shop
+          specialized primarily in making homemade ice cream for small event.
+          Gradually, as time passed, our artisans started to develop more and
+          more products. Having started out in home kitchen, then small shop, we
+          have now a recognized ice cream shop.<br /><br /><br />
+          Yumyum homemade and secret recipe catapulted the company’s reputation
+          as one of summer’s most eagerly awaited treats. People from all over
+          the region visited the shop to enjoy it. <br /><br /><br />
+          Yumyum continued to reinvent the traditional concept of homemade ice
+          cream shop. We developed a magical new concept of stores that offered
+          a spectacular flavours.
+        </p>
+      </section>
+
+      <!--menu-->
+
+      <section id="menusection" class="wrapper">
+        <h2 class="section-heading">Menu</h2>
+        <div class="menuscroll">
+          <div id="imagemenusection" class="menuItem shrink">
+            <img
+              src="images/menuImageOne.jpg"
+              alt="menuimgone"
+              class="shrink"
+            />
+
+            <h3>Mango Banana</h3>
+
+            <p>
+              Combination of sweet banana and light sour. Contains 120 calories,
+              9g sugar per 188ml and Lactose free.
+            </p>
           </div>
 
-          <div class="comments">
-            <label for="comments">Additional Comments:</label>
-            <textarea name="comments" id="comments"></textarea>
+          <div id="imagemenusection" class="menuItem shrink">
+            <img
+              src="images/menuImageTwo.jpg"
+              alt="menuimgtwo"
+              class="shrink"
+            />
+
+            <h3>Vanilla Cookie</h3>
+
+            <p>
+              Mixture of plain vanilla and cookie crumble. Contains 120
+              calories, 9g sugar per 188ml and Lactose free.
+            </p>
           </div>
-          <button type="submit">Submit Feedback</button>
-        </form>
+
+          <div id="imagemenusection" class="menuItem shrink">
+            <img
+              src="images/menuImageThree.jpeg"
+              alt="menuimgthree"
+              class="shrink"
+            />
+
+            <h3>Die for Chocolate</h3>
+
+            <p>
+              Milky chocolate that make you surrender. Contains 120 calories, 9g
+              sugar per 188ml and Lactose free.
+            </p>
+          </div>
+
+          <div id="imagemenusection" class="menuItem shrink">
+            <img
+              src="images/menuImageFour.jpg"
+              alt="menuimgtwo"
+              class="shrink"
+            />
+
+            <h3>Macha Tayyake</h3>
+
+            <p>
+              Mixture of plain vanilla and cookie crumble. Contains 120
+              calories, 9g sugar per 188ml and Lactose free.
+            </p>
+          </div>
+
+          <div id="imagemenusection" class="menuItem shrink">
+            <img
+              src="images/menuImageThree.jpg"
+              alt="menuimgthree"
+              class="shrink"
+            />
+
+            <h3>Sweet Lychee</h3>
+
+            <p>
+              Milky chocolate that make you surrender. Contains 120 calories, 9g
+              sugar per 188ml and Lactose free.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!--insight-->
+
+      <section id="insightsection" class="wrapper">
+        <h2 class="section-heading">Insight</h2>
+        <div class="grid-container">
+          <div class="insightimage">
+            <img
+              src="images/insightOne.png"
+              alt="insightimgone"
+              class="baseimg"
+            />
+            <img
+              src="images/insightOneHover.png"
+              alt="insightimgone"
+              class="hoverimg"
+            />
+            <p class="insighttext">More than 3 million scooping</p>
+          </div>
+
+          <div class="insightimage">
+            <img
+              src="images/insightTwo.png"
+              alt="insightimgtwo"
+              class="baseimg"
+            />
+            <img
+              src="images/insightTwoHover.png"
+              alt="insightimgone"
+              class="hoverimg"
+            />
+            <p class="insighttext">More than 70 flavour available</p>
+          </div>
+
+          <div class="insightimage">
+            <img
+              src="images/insightThree.png"
+              alt="insightimgthree"
+              class="baseimg"
+            />
+            <img
+              src="images/insightThreeHover.png"
+              alt="insightimgthree"
+              class="hoverimg"
+            />
+            <p class="insighttext">20 storefront across Canada</p>
+          </div>
+
+          <div class="insightimage">
+            <img
+              src="images/insightFour.png"
+              alt="insightimgfour"
+              class="baseimg"
+            />
+            <img
+              src="images/insightFourHover.png"
+              alt="insightimgfour"
+              class="hoverimg"
+            />
+            <p class="insighttext">Available for online & offline order</p>
+          </div>
+        </div>
+      </section>
+
+      <!--contact-->
+      <section id="contactsection" class="wrapper">
+        <h2 class="section-heading">Contact</h2>
+
+        <p class="contacttext">
+          If you have any questions or concerns, please email hello@yumyum.com.
+          We will get back to you as soon as possible (usually within 1-2
+          business days)! To ensure you receive our email back and it doesn’t go
+          into spam, don’t forget to add us to your contacts list.
+        </p>
+
+        <div class="grid-container">
+          <div class="contactitem">
+            <h5>Press Inquiries</h5>
+            <p>press@yumyum.com</p>
+          </div>
+
+          <div class="contactitem">
+            <h5>Partnerships</h5>
+            <p>partnerships@yumyum.com</p>
+          </div>
+
+          <div class="contactitem">
+            <h5>Business Inquiries</h5>
+            <p>business@yumyum.com</p>
+          </div>
+
+          <div class="contactitem">
+            <h5>Careers</h5>
+            <p>jobs@yumyum.com</p>
+          </div>
+        </div>
       </section>
     </main>
+
+    <!--link to js-->
+    <script>
+      const $menuSection = document.querySelector(".menuscroll");
+      const $menuItems = document.querySelectorAll(".menuItem");
+      const $navDropDown = document.getElementById("navDropDown");
+      const $menuSvg = document.getElementById("menu");
+      const $mainContent = document.querySelector("main");
+
+      // toggling hamburger menu on click
+      $menuSvg.addEventListener("click", function (event) {
+        $navDropDown.classList.toggle("display");
+        $mainContent.classList.toggle("pushDown");
+        // $navlinkDesktop.classList.toggle("display");
+      });
+
+      document.addEventListener("scroll", function () {
+        // first checking whether menu is visible in the viewport or not
+        // source: https://www.javascripttutorial.net/dom/css/check-if-an-element-is-visible-in-the-viewport/
+        const DOMrect = $menuSection.getBoundingClientRect();
+        if (
+          DOMrect.top >= 0 &&
+          DOMrect.left >= 0 &&
+          DOMrect.bottom <=
+            (window.innerHeight || document.documentElement.clientHeight) &&
+          DOMrect.right <=
+            (window.innerWidth || document.documentElement.clientWidth)
+        ) {
+          $menuItems.forEach(function (e) {
+            e.style.animationPlayState = "running";
+          });
+        } else {
+          // pausing the animation as the element left the viewport
+          $menuItems.forEach(function (e) {
+            e.style.animationPlayState = "paused";
+          });
+        }
+      });
+    </script>
+
+    <!--Site Footer-->
+    <footer>&copy; 2021</footer>
   </body>
 </html>
